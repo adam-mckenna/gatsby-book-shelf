@@ -1,36 +1,39 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
-const contentful = require('contentful');
-
-// TODO: store tokens in .env file.
-const client = contentful.createClient({
-  //
-});
-
-client.getEntries()
-  .then(function (entries) {
-    entries.items.forEach(function (entry) {
-        console.log(entry.fields.title)
-    })
-  })
-
 // TODO: convert to TS.
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const IndexPage = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      allContentfulBook {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+  `);
 
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <h1>Your books</h1>
+
+      {data.allContentfulBook.edges.map(book => (
+        <div key={book.node.id}>{book.node.title}</div>
+      ))}
+
+      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+        <Image />
+      </div>
+      <Link to="/page-2/">Go to page 2</Link>
+    </Layout>
+  )
+}
 export default IndexPage
