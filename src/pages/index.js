@@ -5,6 +5,21 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
+const contentful = require('contentful');
+
+// TODO: store tokens in .env file.
+const client = contentful.createClient({
+  //
+});
+
+client.getEntries()
+  .then(function (entries) {
+    entries.items.forEach(function (entry) {
+        console.log(entry.fields.title)
+    })
+  })
+
+// TODO: convert to TS.
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
