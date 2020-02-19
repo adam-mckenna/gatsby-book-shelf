@@ -3,5 +3,30 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const path = require(`path`)
 
-// You can delete this file if you're not using it
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+
+  const result = await graphql(`
+    query {
+      allContentfulBook {
+        edges {
+          node {
+            isbn
+          }
+        }
+      }
+    }
+  `)
+
+  result.data.allContentfulBook.edges.forEach(({ node }) => {
+    createPage({
+      path: node.isbn,
+      component: path.resolve(`./src/templates/book-detail.js`),
+      context: {
+        slug: node.isbn,
+      },
+    })
+  })
+}
