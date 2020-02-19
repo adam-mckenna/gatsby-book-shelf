@@ -1,21 +1,16 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
+import { Layout } from "../components/layout"
 
 export default ({ data }) => {
-  const post = data.contentfulBook
+  const { title, author, isbn } = data.contentfulBook
 
   return (
     <Layout>
-      <div>
-        <h1>{post.title}</h1>
-        <p>by {post.author}</p>
+      <h1>{title}</h1>
+      <p>by {author}</p>
 
-        <img
-          src={`http://covers.openlibrary.org/b/isbn/${post.isbn}-L.jpg`}
-          alt=""
-        />
-      </div>
+      <img src={`http://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`} alt="" />
     </Layout>
   )
 }

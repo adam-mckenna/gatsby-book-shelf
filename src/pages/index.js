@@ -1,12 +1,51 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
+import styled from "styled-components"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { Layout } from "../components/layout"
+import { SEO } from "../components/seo"
+
+const BookContainer = styled.div`
+  padding: 0 0.125em 0 0.125em;
+`
+
+const BookLink = styled(Link)`
+  text-decoration: none;
+`
+
+const Book = styled.div`
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  background: ${props => props.colour};
+  padding: 0.125em 1em;
+  color: white;
+  will-change: transform;
+  margin-right: 3px;
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.8), inset -2px -2px 0px #bf7540,
+    -1px 0.5px 0px #bf7540;
+  max-width: 50px;
+  height: 450px;
+`
+
+const BookLabel = styled.p`
+  min-width: 400px;
+  transform: rotate(90deg);
+  transform-origin: left;
+  min-height: 50px;
+`
+
+const Shelf = styled.div`
+  height: 5px;
+  margin-top: 0.5px;
+  background: saddlebrown;
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.8), inset -2px -2px 0px #5d3939;
+  z-index: 66666;
+`
 
 // TODO: convert to TS.
 const IndexPage = () => {
-  const data = useStaticQuery(graphql`
+  const { allContentfulBook } = useStaticQuery(graphql`
     query {
       allContentfulBook {
         edges {
@@ -26,61 +65,19 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Home" />
 
-      <div
-        style={{
-          padding: "0 .125em 0 .125em",
-        }}
-      >
-        {data.allContentfulBook.edges.map(({ node }) => (
-          <a
-            href={`/${node.isbn}`}
-            style={{
-              textDecoration: "none",
-            }}
-            key={node.id}
-          >
-            <div
-              style={{
-                display: "inline-block",
-                fontSize: 12,
-                letterSpacing: 1,
-                background: node.colour === "Vintage" ? "#C52B35" : "#ff6900",
-                padding: ".125em 1em",
-                color: "white",
-                willChange: "transform",
-                marginRight: 3,
-                boxShadow:
-                  "-2px 2px 10px rgba(0,0,0,0.8), inset -2px -2px 0px #bf7540, -1px .5px 0px #bf7540",
-                maxWidth: 50,
-                height: 450,
-              }}
-            >
-              <p
-                style={{
-                  margin: 0,
-                  minWidth: 400,
-                  transform: "rotate(90deg)",
-                  transformOrigin: "left",
-                  minHeight: 50,
-                }}
-              >
+      <BookContainer>
+        {allContentfulBook.edges.map(({ node }) => (
+          <BookLink key={node.id} to={`/${node.isbn}`}>
+            <Book colour={node.colour === "Vintage" ? "#C52B35" : "#ff6900"}>
+              <BookLabel>
                 {node.title}, {node.author}
-              </p>
-            </div>
-          </a>
+              </BookLabel>
+            </Book>
+          </BookLink>
         ))}
-      </div>
+      </BookContainer>
 
-      <div
-        style={{
-          height: 5,
-          marginTop: 0.5,
-          background: "saddlebrown",
-          boxShadow:
-            "-2px 2px 10px rgba(0,0,0,0.8), inset -2px -2px 0px #5d3939",
-          zIndex: 66666,
-        }}
-      />
+      <Shelf />
     </Layout>
   )
 }

@@ -8,12 +8,17 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import styled from "styled-components"
 
-import Header from "./header"
+import { Header } from "./header"
 import "./layout.css"
 
+const Wrapper = styled.main`
+  margin: 0 auto;
+`
+
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
+  const { site } = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
         siteMetadata {
@@ -25,14 +30,8 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-        }}
-      >
-        <main>{children}</main>
-      </div>
+      <Header siteTitle={site.siteMetadata.title} />
+      <Wrapper>{children}</Wrapper>
     </>
   )
 }
@@ -41,4 +40,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export { Layout }
