@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
-import { Header } from "./header"
+import { Header } from "../Header/header"
 import "./layout.css"
 
 const Wrapper = styled.main`
