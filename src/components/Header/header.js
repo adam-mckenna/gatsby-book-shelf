@@ -19,7 +19,7 @@ const TitleLink = styled(Link)`
   text-decoration: none;
 `
 
-const Header = ({ siteTitle }) => (
+export const Header = ({ siteTitle }) => (
   <Wrapper>
     <Title>
       <TitleLink to="/">{siteTitle}</TitleLink>
@@ -34,5 +34,3 @@ Header.propTypes = {
 Header.defaultProps = {
   siteTitle: "",
 }
-
-export { Header }

@@ -15,9 +15,16 @@ import "./layout.css"
 
 const Wrapper = styled.main`
   margin: 0 auto;
+  &.fixed-width {
+    display: grid;
+    grid-gap: 1em;
+    max-width: 768px;
+    margin: 2em auto;
+    grid-template-columns: 50% 50%;
+  }
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, hasFixedWidth }) => {
   const { site } = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -31,13 +38,16 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={site.siteMetadata.title} />
-      <Wrapper>{children}</Wrapper>
+      <Wrapper className={hasFixedWidth ? "fixed-width" : ""}>
+        {children}
+      </Wrapper>
     </>
   )
 }
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  hasFixedWidth: PropTypes.bool,
 }
 
 export { Layout }
