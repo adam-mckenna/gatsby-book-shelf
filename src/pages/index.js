@@ -24,7 +24,7 @@ const Shelf = styled.div`
 `
 
 // TODO: convert to TS.
-const IndexPage = () => {
+export const IndexPage = () => {
   const { allContentfulBook } = useStaticQuery(graphql`
     query {
       allContentfulBook {
@@ -61,4 +61,3 @@ const IndexPage = () => {
     </Layout>
   )
 }
-export default IndexPage

@@ -79,7 +79,7 @@ const BookLabel = styled.p`
 const BookAuthor = styled.span`
   font-size: 12px;
 `
-const Book = ({ publisher, title, author }) => {
+export const Book = ({ publisher, title, author }) => {
   return (
     <BookWrapper publisher={publisher} style={{ position: "relative" }}>
       <BookLabel
@@ -146,5 +146,3 @@ Book.propTypes = {
   title: PropTypes.string,
   author: PropTypes.string,
 }
-
-export { Book }
