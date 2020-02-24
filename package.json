@@ -42,5 +42,8 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "comments": {
+    "scripts": "ToDo: add git hooks for npm format."
   }
 }
