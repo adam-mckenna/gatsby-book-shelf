@@ -24,7 +24,7 @@ const Wrapper = styled.main`
   }
 `
 
-const Layout = ({ children, hasFixedWidth }) => {
+export const Layout = ({ children, hasFixedWidth }) => {
   const { site } = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -49,5 +49,3 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
   hasFixedWidth: PropTypes.bool,
 }
-
-export { Layout }
