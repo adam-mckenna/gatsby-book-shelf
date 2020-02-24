@@ -5,6 +5,8 @@
   "version": "0.0.1",
   "author": "Adam McKenna",
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^13.4.0",
+    "@contentful/rich-text-types": "^14.1.0",
     "gatsby": "^2.19.7",
     "gatsby-image": "^2.2.39",
     "gatsby-plugin-manifest": "^2.2.39",
