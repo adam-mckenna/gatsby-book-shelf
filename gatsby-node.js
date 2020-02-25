@@ -8,7 +8,7 @@ const path = require(`path`)
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const result = await graphql(`
+  const { data } = await graphql(`
     query {
       allContentfulBook {
         edges {
@@ -20,7 +20,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  result.data.allContentfulBook.edges.forEach(({ node }) => {
+  data.allContentfulBook.edges.forEach(({ node }) => {
     createPage({
       path: node.isbn,
       component: path.resolve(`./src/templates/book-detail.js`),

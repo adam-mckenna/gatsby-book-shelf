@@ -8,7 +8,10 @@ import { SEO } from "../components/SEO/seo"
 import { Book } from "../components/Book/book"
 
 const BookContainer = styled.div`
-  padding: 0 0.125em 0 0.125em;
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-gap: 3px;
 `
 
 const BookLink = styled(Link)`
@@ -17,14 +20,13 @@ const BookLink = styled(Link)`
 
 const Shelf = styled.div`
   height: 10px;
-  margin-top: -6px;
   background: saddlebrown;
   box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.8), inset -2px -2px 0px #5d3939;
   z-index: 66666;
+  margin-top: -6px;
 `
 
-// TODO: convert to TS.
-export const IndexPage = () => {
+export default () => {
   const { allContentfulBook } = useStaticQuery(graphql`
     query {
       allContentfulBook {
