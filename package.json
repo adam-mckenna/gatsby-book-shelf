@@ -23,6 +23,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
+    "husky": "^4.2.3",
     "prettier": "^1.19.1"
   },
   "scripts": {
@@ -33,6 +34,11 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format"
+    }
   },
   "comments": {
     "scripts": "ToDo: add git hooks for npm format."
