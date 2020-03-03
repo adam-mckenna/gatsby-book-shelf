@@ -12,7 +12,7 @@ const BaseBook = styled.div`
   letter-spacing: 1px;
   font-family: "Poppins";
   border-left: none;
-      border-right: none;
+  border-right: none;
   padding: 0.125em 1em;
   will-change: transform;
   color: white;
