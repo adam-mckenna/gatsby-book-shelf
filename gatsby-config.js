@@ -9,6 +9,7 @@ module.exports = {
     author: `@adammcquiff`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -35,7 +36,6 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `s3tugvxjgtcc`,
-        // TODO: store tokens in .env file.
         // Learn about environment variables: https://gatsby.dev/env-vars
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         downloadLocal: true,

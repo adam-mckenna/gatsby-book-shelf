@@ -6,6 +6,7 @@ import styled from "styled-components"
 import { Layout } from "../components/Layout/layout"
 import { SEO } from "../components/SEO/seo"
 import { Book } from "../components/Book/book"
+import { NoScript } from "../components/Noscript/noscript"
 
 const BookContainer = styled.div`
   position: relative;
@@ -46,6 +47,8 @@ export default () => {
   return (
     <Layout>
       <SEO title="Home" />
+
+      <NoScript />
 
       <BookContainer>
         {allContentfulBook.edges.map(({ node }) => (
