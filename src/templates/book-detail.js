@@ -8,7 +8,7 @@ export default ({ data }) => {
   const { title, author, isbn, description } = data.contentfulBook
 
   return (
-    <Layout hasFixedWidth={true}>
+    <Layout hasFixedWidth>
       <div>
         <h1>{title}</h1>
         <p>by {author}</p>
